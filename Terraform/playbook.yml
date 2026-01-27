@@ -1,0 +1,18 @@
+---
+- name: Configure SSH MaxSessions
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Set MaxSessions to 2 in sshd_config
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?MaxSessions\s+'
+        line: "MaxSessions 2"
+        backup: yes
+      notify: Restart SSH
+  handlers:
+    - name: Restart SSH
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
