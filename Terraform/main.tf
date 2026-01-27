@@ -28,6 +28,10 @@ resource "aws_instance" "vm1" {
     inline = ["sleep 35 && sudo cat /home/ubuntu/playbook.yml"]
   }
 
+#  provisioner "local-exec" {
+#    command = "ansible-playbook -i '${self.public_ip},' --private-key ./labsuser.pem -u ubuntu playbook_local.yml"
+#  }
+
 }
 
 resource "aws_security_group" "coucou" {
@@ -64,3 +68,4 @@ resource "aws_vpc_security_group_egress_rule" "all_outbound" {
     ip_protocol       = "-1"
     cidr_ipv4         = "0.0.0.0/0"
 }
+
