@@ -1,0 +1,52 @@
+---
+# Debut du document YAML (obligatoire pour Ansible)
+
+- name: Configure SSH MaxSessions
+  # Nom du play - description de ce que fait ce playbook
+
+  hosts: all
+  # Cible tous les hotes definis dans l'inventaire Ansible
+
+  become: true
+  # Active l'elevation de privileges (sudo) pour executer les taches en root
+
+  tasks:
+    # Liste des taches a executer
+
+    - name: Set MaxSessions to 2 in sshd_config
+      # Nom de la tache - modifie le parametre MaxSessions dans la config SSH
+
+      ansible.builtin.lineinfile:
+        # Module Ansible pour modifier une ligne dans un fichier
+
+        path: /etc/ssh/sshd_config
+        # Chemin vers le fichier de configuration SSH a modifier
+
+        regexp: '^#?MaxSessions\s+'
+        # Expression reguliere pour trouver la ligne existante
+        # ^#? = debut de ligne, eventuellement commentee avec #
+        # MaxSessions\s+ = "MaxSessions" suivi d'espaces
+
+        line: "MaxSessions 2"
+        # Nouvelle ligne a ecrire (limite les sessions SSH a 2 par connexion)
+
+        backup: yes
+        # Cree une sauvegarde du fichier avant modification
+
+      notify: Restart SSH
+      # Declenche le handler "Restart SSH" si la ligne a ete modifiee
+
+  handlers:
+    # Liste des handlers (actions executees uniquement si notifiees)
+
+    - name: Restart SSH
+      # Nom du handler - doit correspondre au nom dans "notify"
+
+      ansible.builtin.service:
+        # Module Ansible pour gerer les services systemd/init
+
+        name: sshd
+        # Nom du service SSH a redemarrer
+
+        state: restarted
+        # Etat desire : redemarrer le service pour appliquer les changements
