@@ -1,4 +1,4 @@
-![Schéma architecture](./Sans titre2.png)
+![Schéma architecture](./Sec.png)
 
 # Jour 1 - Introduction et prise en main AWS
 
@@ -352,5 +352,6 @@ ssh-audit <IP_CIBLE>
 - Le faire manuellement, et si possible avec Ansible
 
 **Référence** : [Guide ANSSI - Configuration Linux](https://messervices.cyber.gouv.fr/documents-guides/fr_np_linux_configuration-v2.0.pdf)
+
 
 
