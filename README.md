@@ -1,3 +1,5 @@
+![Schéma architecture](Sans titre2.png)
+
 # Jour 1 - Introduction et prise en main AWS
 
 > On se met dans la peau d'un utilisateur. On va faire des erreurs/actions volontaires qui auront des répercussions par la suite.
@@ -350,3 +352,4 @@ ssh-audit <IP_CIBLE>
 - Le faire manuellement, et si possible avec Ansible
 
 **Référence** : [Guide ANSSI - Configuration Linux](https://messervices.cyber.gouv.fr/documents-guides/fr_np_linux_configuration-v2.0.pdf)
+
